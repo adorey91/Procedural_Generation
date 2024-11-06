@@ -420,10 +420,10 @@ RectTransform:
   - {fileID: 1438692956}
   m_Father: {fileID: 1124928536}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 300, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &843364647
 MonoBehaviour:
@@ -624,8 +624,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f10ba766a041deb45b78e9b9edde3995, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotationSpeed: 10
-  distanceFromCenter: 20
+  rotationSpeed: 5
+  distanceFromCenter: 25
   cityGenerator: {fileID: 1428401313}
 --- !u!1 &1124928535
 GameObject:
@@ -638,7 +638,6 @@ GameObject:
   - component: {fileID: 1124928536}
   - component: {fileID: 1124928538}
   - component: {fileID: 1124928537}
-  - component: {fileID: 1124928539}
   m_Layer: 5
   m_Name: Holder
   m_TagString: Untagged
@@ -664,7 +663,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 10, y: 10}
-  m_SizeDelta: {x: 350, y: 400}
+  m_SizeDelta: {x: 350, y: 150}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &1124928537
 MonoBehaviour:
@@ -704,30 +703,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1124928535}
   m_CullTransparentMesh: 1
---- !u!114 &1124928539
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1124928535}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a8695521f0d02e499659fee002a26c2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Padding:
-    m_Left: 0
-    m_Right: 0
-    m_Top: 30
-    m_Bottom: 30
-  m_ChildAlignment: 1
-  m_StartCorner: 0
-  m_StartAxis: 0
-  m_CellSize: {x: 300, y: 100}
-  m_Spacing: {x: 0, y: 0}
-  m_Constraint: 0
-  m_ConstraintCount: 2
 --- !u!1 &1428401311
 GameObject:
   m_ObjectHideFlags: 0
@@ -772,8 +747,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0ad651b97e617343947a67f40d530e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gridWidth: 10
-  gridHeight: 10
+  gridWidth: 16
+  gridHeight: 16
   spacing: 1.5
   minHeight: 1
   maxHeight: 5
@@ -781,7 +756,11 @@ MonoBehaviour:
   - {fileID: 2142883799929726365, guid: 2fd221a9d3b34d14a87e5436af0c81d6, type: 3}
   - {fileID: 2142883799929726365, guid: e1610dd6fb30e3d4da5b89c654eb124b, type: 3}
   - {fileID: 2142883799929726365, guid: fa7a51bfd0455dd4a9202451aaa3f284, type: 3}
+  - {fileID: 2142883799929726365, guid: 8646c37cb73c7634b856590184a5d3e6, type: 3}
+  - {fileID: 2142883799929726365, guid: 2c8d3d76edf3a224f97592c4be2d8ce7, type: 3}
   roadPrefab: {fileID: 2142883799929726365, guid: b8e694b5ee8dfde46b6de19c913b2aba, type: 3}
+  fourWayPrefab: {fileID: 2142883799929726365, guid: 7d34be20b09967f4887b90372791b06e, type: 3}
+  outerIntersectionPrefab: {fileID: 2142883799929726365, guid: 43ff47b6f30f0094283b9193bec9d7b1, type: 3}
 --- !u!1 &1438692955
 GameObject:
   m_ObjectHideFlags: 0
