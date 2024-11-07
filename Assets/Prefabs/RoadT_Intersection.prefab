@@ -491,7 +491,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: eb930cadd7055b549bde39bc74b77c4a, type: 2}
+  - {fileID: 2100000, guid: 9236a0d2d41ce5542b0e1761b09858a2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -761,7 +761,7 @@ GameObject:
   - component: {fileID: 5523532691024150082}
   - component: {fileID: 8801443093263081706}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

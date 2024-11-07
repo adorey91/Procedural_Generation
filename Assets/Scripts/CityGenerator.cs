@@ -6,7 +6,7 @@ public class CityGenerator : MonoBehaviour
 {
     [Header("Grid Settings")]
     [SerializeField] private int gridWidth = 10;
-    [SerializeField] private int gridHeight = 10;
+    [SerializeField] private int gridLength = 10;
 
     [Header("Building Settings")]
     [SerializeField] private float minHeight = 1;
@@ -18,30 +18,23 @@ public class CityGenerator : MonoBehaviour
     [SerializeField] private GameObject fourWayPrefab;
     [SerializeField] private GameObject outerIntersectionPrefab;
 
-    private float roadWidth;
-    private float roadLength;
-
     private void Start()
     {
         if (minHeight < 0.5)
             minHeight = 0.5f;
 
-        // Get the dimensions of the road prefab
-        roadWidth = roadPrefab.GetComponentInChildren<Renderer>().bounds.size.x;
-        roadLength = roadPrefab.GetComponentInChildren<Renderer>().bounds.size.z;
-
         GenerateCity();
     }
 
     public int GridWidth() { return gridWidth; }
-    public int GridHeight() { return gridHeight; }
+    public int GridLength() { return gridLength; }
 
     private void GenerateCity()
     {
         // Phase 1: Random Heights of Buildings
         for (int x = 0; x < GridWidth(); x++)
         {
-            for (int z = 0; z < GridHeight(); z++)
+            for (int z = 0; z < GridLength(); z++)
             {
                 if (ShouldPlaceRoad(x, z))
                 {
@@ -59,45 +52,34 @@ public class CityGenerator : MonoBehaviour
     private void GenerateBuilding(int x, int z)
     {
         float height = DetermineBuildingHeight(x, z); // Phase 3: Technological progress
-        Vector3 position = new Vector3((x * roadWidth) - 1.5f, height / 2, (z * roadLength) - 1.5f);
+        Vector3 position = new Vector3(x, height / 2, z);
 
         // Choose a random building prefab
         GameObject buildingPrefab = buildingPrefabs[Random.Range(0, buildingPrefabs.Count)];
         GameObject building = Instantiate(buildingPrefab, position, Quaternion.identity, transform);
-        building.transform.localScale = new Vector3(roadWidth, height, roadLength);
+        building.transform.localScale = new Vector3(1, height, 1);
     }
 
     private void GenerateRoad(int x, int z)
     {
-        Vector3 position = new Vector3(x * roadWidth, 0, z * roadLength);
-        Quaternion rotation = Quaternion.identity;
-
-        // Check if there are buildings to the north and south or to the east and west
-        if ((HasBuilding(x, z - 1) && HasBuilding(x, z + 1)) || (HasBuilding(x - 1, z) && HasBuilding(x + 1, z)))
-        {
-            rotation = Quaternion.Euler(0, 90, 0); // Rotate 90 degrees
-            position.z -= 3; // Move -3 on the z-axis
-        }
-
-        GameObject road = Instantiate(roadPrefab, position, rotation, transform);
-        road.transform.localScale = new Vector3(1, 1, 1);
+        Vector3 position = new Vector3(x, 0, z);
+        GameObject road = Instantiate(roadPrefab, position, Quaternion.identity, transform);
+        road.transform.localScale = new Vector3(1, 0.3f, 1);
     }
-
-
 
     private void Generate4Way(int x, int z)
     {
-        Vector3 position = new Vector3(x * roadWidth, 0, z * roadLength);
+        Vector3 position = new Vector3(x, 0, z);
         GameObject road = Instantiate(fourWayPrefab, position, Quaternion.identity, transform);
-        road.transform.localScale = new Vector3(1, 1, 1);
+        road.transform.localScale = new Vector3(1, 0.3f, 1);
     }
 
     private void GenerateOuterIntersection(int x, int z)
     {
-        Vector3 position = new Vector3(x * roadWidth, 0, z * roadLength);
+        Vector3 position = new Vector3(x, 0, z  );
         // will need to change rotation based on what edge its on.
         GameObject road = Instantiate(outerIntersectionPrefab, position, Quaternion.identity, transform);
-        road.transform.localScale = new Vector3(1, 1, 1);
+        road.transform.localScale = new Vector3(1, 0.3f, 1);
     }
 
     private bool ShouldPlaceRoad(int x, int z)
@@ -108,7 +90,7 @@ public class CityGenerator : MonoBehaviour
 
     private bool ShouldPlace4Way(int x, int z)
     {
-        bool RoadIsNorth = z + 1 < GridHeight() & ShouldPlaceRoad(x, z + 1);
+        bool RoadIsNorth = z + 1 < GridLength() & ShouldPlaceRoad(x, z + 1);
         bool RoadIsSouth = z - 1 >= 0 & ShouldPlaceRoad(x, z - 1);
         bool RoadIsEast = x + 1 < GridWidth() & ShouldPlaceRoad(x + 1, z);
         bool RoadIsWest = x - 1 >= 0 & ShouldPlaceRoad(x - 1, z);
@@ -118,18 +100,12 @@ public class CityGenerator : MonoBehaviour
 
     private bool ShouldPlaceOuterIntersection(int x, int z)
     {
-        bool RoadIsNorth = z + 1 == GridHeight() & ShouldPlaceRoad(x, z + 1);
+        bool RoadIsNorth = z + 1 == GridLength() & ShouldPlaceRoad(x, z + 1);
         bool RoadIsSouth = z - 1 == 0 & ShouldPlaceRoad(x, z - 1);
         bool RoadIsEast = x + 1 == GridWidth() & ShouldPlaceRoad(x + 1, z);
         bool RoadIsWest = x - 1 == 0 & ShouldPlaceRoad(x - 1, z);
 
         return RoadIsNorth & RoadIsSouth & RoadIsEast & RoadIsWest;
-    }
-
-    private bool HasBuilding(int x, int z)
-    {
-        // Check if the coordinates are within the grid and if there is no road
-        return x >= 0 && x < GridWidth() && z >= 0 && z < GridHeight() && !ShouldPlaceRoad(x, z);
     }
 
     private float DetermineBuildingHeight(int x, int z)
@@ -159,4 +135,6 @@ public class CityGenerator : MonoBehaviour
         }
         GenerateCity();
     }
+
+    public void Quit () => Application.Quit();
 }
