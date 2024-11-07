@@ -471,7 +471,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1428401313}
         m_TargetAssemblyTypeName: CityGenerator, Assembly-CSharp
-        m_MethodName: RegenerateCity
+        m_MethodName: GenerateCity
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -749,18 +749,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gridWidth: 16
   gridHeight: 16
-  spacing: 1.5
   minHeight: 1
   maxHeight: 5
   buildingPrefabs:
+  - {fileID: 2142883799929726365, guid: 8646c37cb73c7634b856590184a5d3e6, type: 3}
   - {fileID: 2142883799929726365, guid: 2fd221a9d3b34d14a87e5436af0c81d6, type: 3}
   - {fileID: 2142883799929726365, guid: e1610dd6fb30e3d4da5b89c654eb124b, type: 3}
   - {fileID: 2142883799929726365, guid: fa7a51bfd0455dd4a9202451aaa3f284, type: 3}
-  - {fileID: 2142883799929726365, guid: 8646c37cb73c7634b856590184a5d3e6, type: 3}
   - {fileID: 2142883799929726365, guid: 2c8d3d76edf3a224f97592c4be2d8ce7, type: 3}
-  roadPrefab: {fileID: 2142883799929726365, guid: b8e694b5ee8dfde46b6de19c913b2aba, type: 3}
-  fourWayPrefab: {fileID: 2142883799929726365, guid: 7d34be20b09967f4887b90372791b06e, type: 3}
-  outerIntersectionPrefab: {fileID: 2142883799929726365, guid: 43ff47b6f30f0094283b9193bec9d7b1, type: 3}
+  roadPrefab: {fileID: 100002, guid: 3c9456c2f99186643ba6a668da85c57c, type: 3}
+  fourWayPrefab: {fileID: 100002, guid: 3c9456c2f99186643ba6a668da85c57c, type: 3}
+  outerIntersectionPrefab: {fileID: 100002, guid: 52b2bd6141968004f9668bd139a2f43d, type: 3}
 --- !u!1 &1438692955
 GameObject:
   m_ObjectHideFlags: 0

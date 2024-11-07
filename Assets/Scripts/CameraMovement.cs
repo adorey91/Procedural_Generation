@@ -14,7 +14,7 @@ public class CameraMovement : MonoBehaviour
     void Start()
     {
         // Calculate the center of the grid
-        center = new Vector3((cityGenerator.GridWidth() - 1) * cityGenerator.Spacing() / 2, 0, (cityGenerator.GridHeight() - 1) * cityGenerator.Spacing() / 2);
+        center = new Vector3((cityGenerator.GridWidth() - 1)/ 2, 0, (cityGenerator.GridHeight() - 1) / 2);
 
         // Position the camera at the desired distance from the center
         transform.position = center + new Vector3(0, distanceFromCenter, -distanceFromCenter);
